@@ -3,10 +3,7 @@
       nodo1.vm.box = "debian/bullseye64"
       nodo1.vm.hostname = "nodo1"
     end
-    config.vm.define :nodo2 do |nodo2|
-      nodo2.vm.box = "generic/ubuntu2010"
-      nodo2.vm.hostname = "nodo2"
-    end
+    
  end
 
   Vagrant.configure("2") do |config|
