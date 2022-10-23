@@ -1,19 +1,27 @@
 
- Vagrant.configure("2") do |config|
-      nodo1.vm.box = "debian/bullseye64"
-      nodo1.vm.hostname = "nodo1"
-    end
-    
- end
-
   Vagrant.configure("2") do |config|
     config.vm.box = "debian/bullseye64"
     config.vm.synced_folder ".", "/vagrant", disabled: true
+    
     config.vm.define :router do |router|
-      router.vm.box = "debian/bullseye64" 
-      router.vm.hostname = "router" 
-    config.vm.provider :libvirt do |libvirt|
-      libvirt.memory = 1024
-      libvirt.cpus = 2
+      router.vm.hostname = "router"
+      router.vm.network :public_network,
+			  :dev => "br0",
+			  :mode => "bridge",
+			  :type => "bridge"
+      router.vm.network :private_network,
+        :libvirt__network_name => "redaislada",
+        :libvirt__dhcp_enabled => false,
+        :ip => "10.0.0.1",
+        :libvirt__forward_mode => "veryisolated"
     end
-end
+
+    config.vm.define :client do |client|
+      client.vm.hostname = "client"
+      client.vm.network :private_network,
+        :libvirt__network_name => "redaislada",
+        :libvirt__dhcp_enabled => false,
+        :ip => "10.0.0.2",
+        :libvirt__forward_mode => "veryisolated"
+    end
+  end
