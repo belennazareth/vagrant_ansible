@@ -1,0 +1,8 @@
+- name: Ensure system is updated
+  apt: update_cache=yes upgrade=yes
+
+- name: SSH
+  authorized_key:
+    user: root
+    key: "{{ lookup('file', '/home/nazare/.ssh/id_rsa.pub') }}"
+    
