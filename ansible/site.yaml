@@ -3,8 +3,18 @@
   roles:
    - role: commons
 
-- hosts: servidores_web
+- hosts: router
   become: true
   roles:
-   - role: apache2
+   - role: router
 
+- hosts: client
+  become: true
+  roles:
+   - role: client
+
+- hosts: web
+  become: true
+  roles:
+   - role: web
+   
