@@ -3,6 +3,6 @@
 
 - name: SSH
   authorized_key:
-    user: root
+    user: vagrant
     key: "{{ lookup('file', '/home/nazare/.ssh/id_rsa.pub') }}"
     
