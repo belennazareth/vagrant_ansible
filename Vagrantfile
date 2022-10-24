@@ -24,4 +24,9 @@
         :ip => "10.0.0.2",
         :libvirt__forward_mode => "veryisolated"
     end
+
+    config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "ansible/site.yml"   
+    end
+
   end
