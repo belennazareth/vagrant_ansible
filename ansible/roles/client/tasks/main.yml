@@ -1,8 +1,13 @@
 - name: Cambiar ruta por defecto
-  command: ip route del default && ip route add default via 10.0.0.1
+  shell: ip route del default && ip route add default via 10.0.0.1 
 
-- name: reinicio
-  service:
-    name: reinicio
-    state: restarted
-  become: yes
+# - name: reinicio
+  # service:
+    # name: reinicio
+    # state: restarted
+  # become: yes
+
+- name: reiniciando maquina
+  ansible.builtin.reboot:
+    pre_reboot_delay: 5
+    post_reboot_delay: 15

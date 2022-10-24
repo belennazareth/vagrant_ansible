@@ -5,9 +5,9 @@ all:
         router: 
           ansible_ssh_host: 192.168.121.157
           ansible_ssh_user: vagrant
-          ansible_ssh_private_key_file: ../.vagrant/machines/default/libvirt/private_key
+          ansible_ssh_private_key_file: ../.vagrant/machines/router/libvirt/private_key
         client: 
           ansible_ssh_host: 192.168.121.19
           ansible_ssh_user: vagrant
-          ansible_ssh_private_key_file: ../.vagrant/machines/default/libvirt/private_key
+          ansible_ssh_private_key_file: ../.vagrant/machines/client/libvirt/private_key
         

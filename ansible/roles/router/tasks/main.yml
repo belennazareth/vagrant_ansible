@@ -6,15 +6,6 @@
     state: present
     reload: yes
 
-- name: SNAT
-  iptables:
-    chain: POSTROUTING
-    destination: 10.0.0.0/24
-    out_interface: eth1
-    jump: MASQUERADE
-    table: nat
-  become: yes
-
 - name: DNAT redirección puerto 80
   iptables:
     chain: PREROUTING
@@ -23,5 +14,14 @@
     protocol: tcp
     jump: DNAT
     table: nat
-    to_destination: 10.0.0.2:80
+    to_destination: 10.0.0.1:80  
+  become: yes
+
+- name: SNAT
+  iptables:
+    chain: POSTROUTING
+    destination: 0.0.0.0/0
+    out_interface: eth1
+    jump: MASQUERADE
+    table: nat
   become: yes
