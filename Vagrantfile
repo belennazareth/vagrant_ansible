@@ -6,7 +6,7 @@
     config.vm.define :router do |router|
       router.vm.hostname = "router"
       router.vm.network :public_network,
-			  :dev => "br0",
+			  :dev => "bridge0",
 			  :mode => "bridge",
 			  :type => "bridge"
       router.vm.network :private_network,
