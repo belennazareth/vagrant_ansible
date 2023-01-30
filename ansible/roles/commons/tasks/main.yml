@@ -1,4 +1,4 @@
-- name: Ensure system is updated
+- name: Actualizacion
   apt: update_cache=yes upgrade=yes
 
 - name: SSH
