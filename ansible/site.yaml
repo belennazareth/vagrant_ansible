@@ -8,12 +8,12 @@
   roles:
    - role: router
 
-- hosts: client
+- hosts: web
   become: true
   roles:
    - role: client
 
-- hosts: client
+- hosts: web
   become: true
   roles:
    - role: web
