@@ -26,7 +26,7 @@
     end
 
     config.vm.provision "ansible" do |ansible|
-       ansible.playbook = "playbook.yml"
+       ansible.playbook = "ansible/site.yml"
     end
 	  
   end
