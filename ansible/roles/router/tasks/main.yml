@@ -41,4 +41,7 @@
   become: yes
 
 - name: Cambiar ruta por defecto
-  command: ip route del default && ip route add default via 192.168.1.1
+  command: ip route del default
+
+- name: Ruta nueva por defecto
+  command: ip route add default via 192.168.1.1
