@@ -25,4 +25,8 @@
         :libvirt__forward_mode => "veryisolated"
     end
 
+    config.vm.provision "ansible" do |ansible|
+       ansible.playbook = "playbook.yml"
+    end
+	  
   end
