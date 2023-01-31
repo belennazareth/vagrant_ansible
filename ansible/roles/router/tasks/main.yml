@@ -1,3 +1,17 @@
+- name: Instalar iptables
+  apt:
+    name: iptables
+    state: present
+  become: true
+
+- name: Enrutamiento IP
+  sysctl: 
+    name: net.ipv4.ip_forward
+    value: 1
+    sysctl_set: yes
+    state: present
+    reload: yes
+
 - name: bit de forward
   sysctl: 
     name: net.ipv4.ip_forward
@@ -5,6 +19,15 @@
     sysctl_set: yes
     state: present
     reload: yes
+
+- name: SNAT
+  iptables:
+    chain: POSTROUTING
+    destination: 10.0.0.0/24
+    out_interface: eth1
+    jump: MASQUERADE
+    table: nat
+  become: yes
 
 - name: DNAT redirección puerto 80
   iptables:
@@ -17,11 +40,5 @@
     to_destination: 10.0.0.2:80  
   become: yes
 
-- name: SNAT
-  iptables:
-    chain: POSTROUTING
-    destination: 10.0.0.0/24
-    out_interface: eth1
-    jump: MASQUERADE
-    table: nat
-  become: yes
+- name: Cambiar ruta por defecto
+  command: ip route del default && ip route add default via 192.168.1.1
