@@ -1,5 +1,10 @@
-- name: Cambiar ruta por defecto
-  shell: ip route del default && ip route add default via 10.0.0.1 
+- name: Cambiar ruta por defecto del cliente
+  template:
+    src: interface
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: 0644
 
 # - name: reinicio
   # service:
