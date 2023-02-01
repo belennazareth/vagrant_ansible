@@ -4,5 +4,6 @@
 - name: SSH
   authorized_key:
     user: vagrant
+    state: present
     key: "{{ lookup('file', '/home/nazare/.ssh/id_rsa.pub') }}"
     
