@@ -3,17 +3,17 @@
   roles:
    - role: commons
 
-- hosts: router
+- hosts: routers
   become: true
   roles:
    - role: router
 
-- hosts: web
+- hosts: clients
   become: true
   roles:
    - role: client
 
-- hosts: web
+- hosts: clients
   become: true
   roles:
    - role: web
