@@ -6,15 +6,10 @@
 - hosts: router
   become: true
   roles:
-   - role: routers
+   - role: router
 
 - hosts: client
   become: true
   roles:
-   - role: clients
-
-- hosts: client
-  become: true
-  roles:
+   - role: client
    - role: web
-   
