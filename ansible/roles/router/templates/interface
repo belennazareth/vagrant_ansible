@@ -6,10 +6,13 @@ iface eth0 inet dhcp
 
 auto eth1
 iface eth1 inet dhcp
-    post-up iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o eth1 -j MASQUERADE
-    post-up iptables -t nat -A PREROUTING -p tcp --dport 80 -i eth1 -j DNAT --to {{ip_cliente}}
+    post-up ip route del default dev eth0 || true
+    post-up dhclient $IFACE
+    pre-down ip route add default dev eth0
 
 auto eth2
 iface eth2 inet static
       address {{ip_router}}
       netmask 255.255.255.0
+
+up iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -o eth1 -j MASQUERADE
