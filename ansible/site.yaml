@@ -8,7 +8,7 @@
   roles:
    - role: router
 
-- hosts: clients
+- hosts: client
   become: true
   roles:
    - role: client
