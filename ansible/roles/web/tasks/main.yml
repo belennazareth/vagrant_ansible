@@ -1,5 +1,6 @@
 - name: Instalar Apache
-  apt: name=apache2 update_cache=yes state=latest
+  apt:
+    pkg: apache2
 
 - name: Configuración web estática
   template: 
